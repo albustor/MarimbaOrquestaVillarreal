@@ -67,7 +67,7 @@ export default function Paquetes({ fee }: PaquetesProps) {
                         <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Honorarios de Producción</div>
                     </div>
                     <ul className="text-sm space-y-3 mb-6 flex-grow">
-                        <li className="flex items-start"><i className="fas fa-star text-yellow-500 mt-1 mr-2"></i><span>Sesión día completo (5 horas de producción).</span></li>
+                        <li className="flex items-start"><i className="fas fa-star text-yellow-500 mt-1 mr-2"></i><span>Sesión de 5 horas de producción.</span></li>
                         <li className="flex items-start"><i className="fas fa-star text-yellow-500 mt-1 mr-2"></i><span>Múltiples sets de iluminación y vestuario.</span></li>
                         <li className="flex items-start"><i className="fas fa-video text-blue-500 mt-1 mr-2"></i><span>Video BTS + Entrevistas + Teaser musical.</span></li>
                         <li className="flex items-start"><i className="fas fa-check text-green-500 mt-1 mr-2"></i><span>Retoque digital Full High-End (30+ fotos).</span></li>
