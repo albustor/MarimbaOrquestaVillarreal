@@ -8,12 +8,9 @@ export default function Guion({ clientName }: GuionProps) {
     const defaultScript = `"Hola ${clientName || '[Nombre del Líder]'}, espero que estén excelente.\n\nEstuve analizando la esencia de su grupo y me di cuenta de algo clave: ustedes no solo tocan música, ustedes crean la fiesta. Por eso, quiero proponerles el concepto 'La Fiesta Infinita'.\n\nHe preparado tres escenarios de inversión para adaptarnos a su presupuesto. Mi recomendación es el paquete Estándar, donde usaremos piñas reales, confeti explosivo y una iluminación estilo pop para vender alegría inmediata.\n\n¿Qué les parece si agendamos y hacemos que esta fiesta suceda?"`;
 
     const [scriptText, setScriptText] = useState(defaultScript);
+    const [selectedIdea, setSelectedIdea] = useState<{title: string, icon: string, text: string} | null>(null);
 
     useEffect(() => {
-        // Solo actualiza si no se ha modificado manualmente demasiado o si se quiere forzar
-        // Para no perder los cambios manuales, podríamos no sobreescribir si ya tiene items agregados.
-        // Una lógica simple: si incluye la frase inicial, la reemplazamos.
-        // Para simplificar, actualizaremos si está muy cerca del default.
         setScriptText(defaultScript);
     }, [clientName]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -52,6 +49,45 @@ export default function Guion({ clientName }: GuionProps) {
 
     return (
         <div className="animate-slideUp">
+            {selectedIdea && (
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4 animate-fadeIn">
+                    <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full animate-slideUp">
+                        <div className="flex justify-between items-start mb-4">
+                            <h4 className="text-xl font-bold text-deep-purple flex items-center">
+                                <i className={`fas ${selectedIdea.icon} mr-3 text-2xl`}></i>
+                                {selectedIdea.title}
+                            </h4>
+                            <button onClick={() => setSelectedIdea(null)} className="text-gray-400 hover:text-red-500 text-lg transition"><i className="fas fa-times"></i></button>
+                        </div>
+                        <p className="text-gray-600 mb-6 text-sm">{selectedIdea.text}</p>
+                        
+                        <div className="bg-yellow-50 border-l-4 border-guanacaste-sun p-3 mb-6 rounded-r">
+                            <p className="text-xs text-yellow-800 font-medium leading-tight">
+                                <i className="fas fa-info-circle mr-1"></i> Esto es una muestra de la totalidad a desarrollar.
+                            </p>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <button 
+                                onClick={() => { 
+                                    addToScript(selectedIdea.text); 
+                                    setSelectedIdea(null); 
+                                }} 
+                                className="flex-1 bg-deep-purple text-white py-2 rounded font-bold hover:bg-indigo-900 transition text-sm shadow-md"
+                            >
+                                Añadir al Guion
+                            </button>
+                            <button 
+                                onClick={() => setSelectedIdea(null)} 
+                                className="flex-1 bg-gray-100 text-gray-700 py-2 rounded font-bold hover:bg-gray-200 transition text-sm"
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-800">Guion de Venta</h2>
                 <div className="flex space-x-2">
@@ -74,10 +110,14 @@ export default function Guion({ clientName }: GuionProps) {
 
             <div className="border-t pt-8 border-gray-200">
                 <h3 className="text-xl font-bold text-deep-purple mb-2 text-center"><i className="fas fa-lightbulb text-guanacaste-sun mr-2"></i>Banco de Ideas (Click para agregar)</h3>
-                <p className="text-center text-xs text-gray-400 mb-6">Toca una tarjeta para insertar la idea en el guion.</p>
+                <p className="text-center text-xs text-gray-400 mb-6">Toca una tarjeta para explorar la idea o insertarla en el guion.</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     {ideas.map((idea, index) => (
-                        <div key={index} className="idea-card bg-white p-3 rounded-lg shadow text-center border border-gray-100" onClick={() => addToScript(idea.text)}>
+                        <div 
+                            key={index} 
+                            className="idea-card bg-white p-3 rounded-lg shadow text-center border border-gray-100 cursor-pointer hover:shadow-md transition hover:-translate-y-1" 
+                            onClick={() => setSelectedIdea(idea)}
+                        >
                             <i className={`fas ${idea.icon} text-2xl mb-1`}></i>
                             <p className="text-[10px] font-bold text-gray-700">{idea.title}</p>
                         </div>

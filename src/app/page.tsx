@@ -31,8 +31,8 @@ export default function Home() {
       <header className="bg-white shadow-lg sticky top-0 z-50 border-t-4 border-fiesta-pink">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-deep-purple leading-tight">Alberto Bustos Fotografía</h1>
-            <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest">Asesor Nacional de Recursos Tecnológicos en Educación</p>
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-deep-purple leading-tight">Curiol Studio</h1>
+            <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest"><a href="https://curiolstudio.com" target="_blank" rel="noopener noreferrer" className="hover:text-fiesta-pink transition">curiolstudio.com</a></p>
           </div>
           <div className="hidden md:flex items-center space-x-2">
             <span className="bg-guanacaste-sun text-deep-purple px-3 py-1 rounded-full text-xs font-bold shadow-sm">VERSIÓN 7.0 (NEXT.JS)</span>
@@ -85,8 +85,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-white border-t mt-auto py-8">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="font-bold text-deep-purple text-lg">Alberto Bustos Fotografía</p>
-          <p className="text-xs text-gray-500 mb-2">Asesor Nacional de Recursos Tecnológicos en Educación</p>
+          <p className="font-bold text-deep-purple text-lg">Curiol Studio</p>
+          <p className="text-xs text-gray-500 mb-2"><a href="https://curiolstudio.com" target="_blank" rel="noopener noreferrer" className="hover:text-fiesta-pink transition">curiolstudio.com</a></p>
           <div className="flex justify-center space-x-4 text-gray-400 text-lg">
             <i className="fas fa-camera hover:text-fiesta-pink transition cursor-pointer"></i>
             <i className="fas fa-laptop-code hover:text-tropical-cyan transition cursor-pointer"></i>
